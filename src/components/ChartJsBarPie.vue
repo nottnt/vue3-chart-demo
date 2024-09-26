@@ -1,37 +1,50 @@
 <template>
   <div>
     <h2>Bar Chart (vue-chartjs)</h2>
-    <Bar id="chart-js-bar" :data="barData" :options="chartOptions" />
+    <div class="chart-container">
+      <Bar id="chart-js-bar" :data="barData" :options="chartOptions" />
+    </div>
 
     <h2>Pie Chart (vue-chartjs)</h2>
-    <Pie id="chart-js-pie" :data="pieData" :options="chartOptions" />
+    <div class="chart-container">
+      <Pie id="chart-js-pie" :data="pieData" :options="chartOptions" />
+    </div>
+
+    <h2>Line Chart (vue-chartjs)</h2>
+    <div class="chart-container">
+      <Line id="chart-js-line" :data="lineData" :options="chartOptions" />
+    </div>
   </div>
 </template>
 
 <script setup>
   import { ref } from "vue";
   import { useTheme } from "vuetify";
-  import { Bar, Pie } from "vue-chartjs"; // Import Bar and Pie charts
+  import { Bar, Pie, Line } from "vue-chartjs"; // Import Bar and Pie charts
   import {
     Chart as ChartJS,
     Title,
     Tooltip,
     Legend,
     BarElement,
+    LineElement,
     ArcElement,
     CategoryScale,
     LinearScale,
+    PointElement,
   } from "chart.js";
 
-  // Register necessary components for Chart.js
+  // Register components needed for Line chart
   ChartJS.register(
     Title,
     Tooltip,
     Legend,
     BarElement,
+    LineElement,
     ArcElement,
     CategoryScale,
-    LinearScale
+    LinearScale,
+    PointElement
   );
 
   // Get the current Vuetify theme
@@ -68,12 +81,34 @@
     ],
   });
 
+  // Line Chart Data
+  const lineData = ref({
+    labels: ["January", "February", "March", "April"],
+    datasets: [
+      {
+        label: "Temperature",
+        borderColor: theme.current.value.colors.blue,
+        backgroundColor: theme.current.value.colors.blue,
+        data: [15, 20, 18, 25],
+        fill: false,
+        tension: 0.1,
+      },
+    ],
+  });
+
   const chartOptions = ref({
     responsive: true,
     maintainAspectRatio: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem) {
+            return `Custom Tooltip: ${tooltipItem.dataset.label} - ${tooltipItem.raw} units`;
+          },
+        },
+      },
+    },
   });
 </script>
 
-<style>
-  /* You can adjust chart container size here if needed */
-</style>
+<style></style>

@@ -1,10 +1,28 @@
 <template>
   <div>
     <h2>Bar Chart (vue-echarts)</h2>
-    <v-chart class="chart" id="e-chart-bar" :option="barOptions" autoresize />
+    <v-chart
+      class="chart-container"
+      id="e-chart-bar"
+      :option="barOptions"
+      autoresize
+    />
 
     <h2>Pie Chart (vue-echarts)</h2>
-    <v-chart class="chart" id="e-chart-pie" :option="pieOptions" autoresize />
+    <v-chart
+      class="chart-container"
+      id="e-chart-pie"
+      :option="pieOptions"
+      autoresize
+    />
+
+    <h2>Line Chart (vue-echarts)</h2>
+    <v-chart
+      class="chart-container"
+      id="e-chart-line"
+      :option="lineOptions"
+      autoresize
+    />
   </div>
 </template>
 
@@ -13,7 +31,7 @@
   import { useTheme } from "vuetify";
   import { use } from "echarts/core";
   import { CanvasRenderer } from "echarts/renderers";
-  import { BarChart, PieChart } from "echarts/charts";
+  import { BarChart, PieChart, LineChart } from "echarts/charts";
   import {
     TitleComponent,
     TooltipComponent,
@@ -27,6 +45,7 @@
     CanvasRenderer,
     BarChart,
     PieChart,
+    LineChart,
     TitleComponent,
     TooltipComponent,
     LegendComponent,
@@ -36,9 +55,24 @@
   // Get the current Vuetify theme
   const theme = useTheme();
 
+  // Custom tooltip formatter for ECharts
+  const formatTooltip = (params) => {
+    if (params.seriesType === "bar") {
+      return `Custom Bar Tooltip: ${params.name}: ${params.value}`;
+    } else if (params.seriesType === "pie") {
+      return `Custom Pie Tooltip: ${params.name}: ${params.value}`;
+    } else if (params.seriesType === "line") {
+      return `Custom Line Tooltip: ${params.name}: ${params.value}`;
+    }
+    return "";
+  };
+
   const barOptions = ref({
     title: { text: "Bar Chart" },
-    tooltip: {},
+    tooltip: {
+      trigger: "item",
+      formatter: formatTooltip,
+    },
     xAxis: {
       type: "category",
       data: ["January", "February", "March", "April"],
@@ -57,7 +91,10 @@
 
   const pieOptions = ref({
     title: { text: "Pie Chart" },
-    tooltip: { trigger: "item" },
+    tooltip: {
+      trigger: "item",
+      formatter: formatTooltip,
+    },
     legend: { top: "5%" },
     series: [
       {
@@ -94,10 +131,29 @@
       },
     ],
   });
+
+  // Line Chart Options
+  const lineOptions = ref({
+    title: { text: "Line Chart" },
+    tooltip: {
+      trigger: "item",
+      formatter: formatTooltip,
+    },
+    xAxis: {
+      type: "category",
+      data: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: [15, 20, 18, 25, 22],
+        type: "line",
+        color: theme.current.value.colors.blue,
+      },
+    ],
+  });
 </script>
 
-<style>
-  .chart {
-    height: 50vh;
-  }
-</style>
+<style></style>
