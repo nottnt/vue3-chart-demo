@@ -17,10 +17,10 @@
 </template>
 
 <script setup lang="ts">
-  import ChartJsBarPie from "./components/ChartJsBarPie.vue";
-  import EChartsBarPie from "./components/EChartsBarPie.vue";
+import ChartJsBarPie from './components/ChartJsBarPie.vue'
+import EChartsBarPie from './components/EChartsBarPie.vue'
 </script>
 
 <style>
-  /* Optionally adjust Vuetify styles here */
+/* Optionally adjust Vuetify styles here */
 </style>

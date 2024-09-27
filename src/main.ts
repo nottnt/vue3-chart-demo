@@ -6,5 +6,5 @@ import vuetify from './plugins/vuetify' // Import Vuetify
 import './style.css'
 
 createApp(App)
-    .use(vuetify) // Use Vuetify
-    .mount('#app')
+  .use(vuetify) // Use Vuetify
+  .mount('#app')

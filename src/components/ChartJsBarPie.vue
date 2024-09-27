@@ -18,97 +18,97 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from "vue";
-  import { useTheme } from "vuetify";
-  import { Bar, Pie, Line } from "vue-chartjs"; // Import Bar and Pie charts
-  import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    LineElement,
-    ArcElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-  } from "chart.js";
+import { ref } from 'vue'
+import { useTheme } from 'vuetify'
+import { Bar, Pie, Line } from 'vue-chartjs' // Import Bar and Pie charts
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  LineElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+} from 'chart.js'
 
-  // Register components needed for Line chart
-  ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    LineElement,
-    ArcElement,
-    CategoryScale,
-    LinearScale,
-    PointElement
-  );
+// Register components needed for Line chart
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  LineElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PointElement
+)
 
-  // Get the current Vuetify theme
-  const theme = useTheme();
+// Get the current Vuetify theme
+const theme = useTheme()
 
-  const barData = ref({
-    labels: ["January", "February", "March", "April"],
-    datasets: [
-      {
-        label: "Sales",
-        backgroundColor: [
-          theme.current.value.colors.primary,
-          theme.current.value.colors.secondary,
-          theme.current.value.colors.success,
-          theme.current.value.colors.error,
-        ],
-        data: [40, 60, 80, 100],
-      },
-    ],
-  });
+const barData = ref({
+  labels: ['January', 'February', 'March', 'April'],
+  datasets: [
+    {
+      label: 'Sales',
+      backgroundColor: [
+        theme.current.value.colors.primary,
+        theme.current.value.colors.secondary,
+        theme.current.value.colors.success,
+        theme.current.value.colors.error,
+      ],
+      data: [40, 60, 80, 100],
+    },
+  ],
+})
 
-  const pieData = ref({
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-      {
-        label: "Population",
-        backgroundColor: [
-          theme.current.value.colors.error,
-          theme.current.value.colors.blue,
-          theme.current.value.colors.warning,
-        ],
-        data: [300, 500, 200],
-      },
-    ],
-  });
+const pieData = ref({
+  labels: ['Red', 'Blue', 'Yellow'],
+  datasets: [
+    {
+      label: 'Population',
+      backgroundColor: [
+        theme.current.value.colors.error,
+        theme.current.value.colors.blue,
+        theme.current.value.colors.warning,
+      ],
+      data: [300, 500, 200],
+    },
+  ],
+})
 
-  // Line Chart Data
-  const lineData = ref({
-    labels: ["January", "February", "March", "April"],
-    datasets: [
-      {
-        label: "Temperature",
-        borderColor: theme.current.value.colors.blue,
-        backgroundColor: theme.current.value.colors.blue,
-        data: [15, 20, 18, 25],
-        fill: false,
-        tension: 0.1,
-      },
-    ],
-  });
+// Line Chart Data
+const lineData = ref({
+  labels: ['January', 'February', 'March', 'April'],
+  datasets: [
+    {
+      label: 'Temperature',
+      borderColor: theme.current.value.colors.blue,
+      backgroundColor: theme.current.value.colors.blue,
+      data: [15, 20, 18, 25],
+      fill: false,
+      tension: 0.1,
+    },
+  ],
+})
 
-  const chartOptions = ref({
-    responsive: true,
-    maintainAspectRatio: true,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: function (tooltipItem) {
-            return `Custom Tooltip: ${tooltipItem.dataset.label} - ${tooltipItem.raw} units`;
-          },
+const chartOptions = ref({
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function (tooltipItem) {
+          return `Custom Tooltip: ${tooltipItem.dataset.label} - ${tooltipItem.raw} units`
         },
       },
     },
-  });
+  },
+})
 </script>
 
 <style></style>
