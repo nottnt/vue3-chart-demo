@@ -12,7 +12,7 @@
 
     <h2>Line Chart (vue-chartjs)</h2>
     <div class="chart-container">
-      <Line id="chart-js-line" :data="lineData" :options="chartOptions" />
+      <Line id="chart-js-line" :data="lineData" :options="lineChartOptions" />
     </div>
   </div>
 </template>
@@ -32,6 +32,10 @@ import {
   CategoryScale,
   LinearScale,
   PointElement,
+  ChartData,
+  ChartOptions,
+  TooltipItem,
+  ChartTypeRegistry,
 } from 'chart.js'
 
 // Register components needed for Line chart
@@ -50,7 +54,7 @@ ChartJS.register(
 // Get the current Vuetify theme
 const theme = useTheme()
 
-const barData = ref({
+const barData = ref<ChartData<'bar'>>({
   labels: ['January', 'February', 'March', 'April'],
   datasets: [
     {
@@ -66,7 +70,7 @@ const barData = ref({
   ],
 })
 
-const pieData = ref({
+const pieData = ref<ChartData<'pie'>>({
   labels: ['Red', 'Blue', 'Yellow'],
   datasets: [
     {
@@ -82,7 +86,7 @@ const pieData = ref({
 })
 
 // Line Chart Data
-const lineData = ref({
+const lineData = ref<ChartData<'line'>>({
   labels: ['January', 'February', 'March', 'April'],
   datasets: [
     {
@@ -96,13 +100,27 @@ const lineData = ref({
   ],
 })
 
-const chartOptions = ref({
+const chartOptions = ref<ChartOptions<'pie' | 'bar'>>({
   responsive: true,
   maintainAspectRatio: true,
   plugins: {
     tooltip: {
       callbacks: {
-        label: function (tooltipItem) {
+        label: function (tooltipItem: TooltipItem<keyof ChartTypeRegistry>) {
+          return `Custom Tooltip: ${tooltipItem.dataset.label} - ${tooltipItem.raw} units`
+        },
+      },
+    },
+  },
+})
+
+const lineChartOptions = ref<ChartOptions<'line'>>({
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: function (tooltipItem: TooltipItem<keyof ChartTypeRegistry>) {
           return `Custom Tooltip: ${tooltipItem.dataset.label} - ${tooltipItem.raw} units`
         },
       },
