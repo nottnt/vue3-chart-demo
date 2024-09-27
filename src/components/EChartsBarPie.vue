@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { ref } from "vue";
   import { useTheme } from "vuetify";
   import { use } from "echarts/core";

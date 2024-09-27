@@ -16,7 +16,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import ChartJsBarPie from "./components/ChartJsBarPie.vue";
   import EChartsBarPie from "./components/EChartsBarPie.vue";
 </script>

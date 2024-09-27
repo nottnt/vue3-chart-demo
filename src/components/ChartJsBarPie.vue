@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { ref } from "vue";
   import { useTheme } from "vuetify";
   import { Bar, Pie, Line } from "vue-chartjs"; // Import Bar and Pie charts
