@@ -23,7 +23,9 @@ import {
   LegendComponent,
   GridComponent,
 } from 'echarts/components'
+import { EChartsOption } from 'echarts'
 import VChart from 'vue-echarts'
+import { TopLevelFormatterParams, CallbackDataParams } from 'echarts/types/dist/shared'
 
 // Register only necessary ECharts components
 use([
@@ -41,18 +43,21 @@ use([
 const theme = useTheme()
 
 // Custom tooltip formatter for ECharts
-const formatTooltip = (params) => {
-  if (params.seriesType === 'bar') {
-    return `Custom Bar Tooltip: ${params.name}: ${params.value}`
-  } else if (params.seriesType === 'pie') {
-    return `Custom Pie Tooltip: ${params.name}: ${params.value}`
-  } else if (params.seriesType === 'line') {
-    return `Custom Line Tooltip: ${params.name}: ${params.value}`
+const formatTooltip = (params: unknown) => {
+  const paramsWithType = params as CallbackDataParams
+
+  if (paramsWithType.seriesType === 'bar') {
+    return `Custom Bar Tooltip: ${paramsWithType.name}: ${paramsWithType.value}`
+  } else if (paramsWithType.seriesType === 'pie') {
+    return `Custom Pie Tooltip: ${paramsWithType.name}: ${paramsWithType.value}`
+  } else if (paramsWithType.seriesType === 'line') {
+    return `Custom Line Tooltip: ${paramsWithType.name}: ${paramsWithType.value}`
   }
+
   return ''
 }
 
-const barOptions = ref({
+const barOptions = ref<EChartsOption>({
   title: { text: 'Bar Chart' },
   tooltip: {
     trigger: 'item',
@@ -74,7 +79,7 @@ const barOptions = ref({
   ],
 })
 
-const pieOptions = ref({
+const pieOptions = ref<EChartsOption>({
   title: { text: 'Pie Chart' },
   tooltip: {
     trigger: 'item',
@@ -118,7 +123,7 @@ const pieOptions = ref({
 })
 
 // Line Chart Options
-const lineOptions = ref({
+const lineOptions = ref<EChartsOption>({
   title: { text: 'Line Chart' },
   tooltip: {
     trigger: 'item',
