@@ -1,4 +1,5 @@
 // src/plugins/vuetify.js
+import '../assets/settings.scss'
 import { createVuetify } from 'vuetify'
 import 'vuetify/styles'
 import * as components from 'vuetify/components'
