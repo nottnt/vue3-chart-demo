@@ -17,6 +17,7 @@
     "echarts": "^5.5.1",
     "vue": "^3.4.37",
     "vue-chartjs": "^5.3.1",
+    "vue-data-ui": "^2.3.11",
     "vue-echarts": "^7.0.3"
   },
   "devDependencies": {

@@ -1613,6 +1613,11 @@ vue-chartjs@^5.3.1:
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-5.3.1.tgz#73484d569ec4994ba5accd30fe6714ef28e86f5b"
   integrity sha512-rZjqcHBxKiHrBl0CIvcOlVEBwRhpWAVf6rDU3vUfa7HuSRmGtCslc0Oc8m16oAVuk0erzc1FCtH1VCriHsrz+A==
 
+vue-data-ui@^2.3.11:
+  version "2.3.11"
+  resolved "https://registry.yarnpkg.com/vue-data-ui/-/vue-data-ui-2.3.11.tgz#b37aedfdfccfd823567fe2d23ecacab033ecca2d"
+  integrity sha512-JOBdzvKynLmnIEtgxH99yb3v91zV0IHMHN3ZTlfGp0yyV3tkkgIBcYIR8Me2k0psG4n/6BhRJfW3cmlSCKIebw==
+
 vue-demi@^0.13.11:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
