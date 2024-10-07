@@ -10,6 +10,9 @@
           <v-col>
             <EChartsBarPie />
           </v-col>
+          <v-col>
+            <VueDataUIBarPie />
+          </v-col>
         </v-row>
       </v-container>
     </v-main>
@@ -19,6 +22,7 @@
 <script setup lang="ts">
 import ChartJsBarPie from './components/ChartJsBarPie.vue'
 import EChartsBarPie from './components/EChartsBarPie.vue'
+import VueDataUIBarPie from './components/VueDataUIBarPie.vue'
 </script>
 
 <style>
